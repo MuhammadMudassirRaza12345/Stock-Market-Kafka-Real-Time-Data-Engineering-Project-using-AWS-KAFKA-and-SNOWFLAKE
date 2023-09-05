@@ -1,0 +1,71 @@
+---------First create virtual enviroment-------- 
+sudo pip3 install python3 (if python not download)
+sudo pip3 install virtualenv
+sudo virtualenv venv
+sudo source venv/bin/activate
+deactivate (For enviroment deactivate)
+
+
+-------------Download kafka-------------
+
+wget https://downloads.apache.org/kafka/3.5.0/kafka_2.13-3.5.0.tgz 
+tar -xzf kafka_2.13-3.5.0.tgz 
+
+
+-----------------------Install java 
+sudo apt update
+sudo apt install default-jre      or sudo yum install java-1.8.0-openjdk
+java -version 
+
+---Now Start Work on Kafka--------
+
+cd kafka_2.13-3.5.0/ 
+
+Start Zoo-keeper:
+-------------------------------
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Open another window to start kafka
+But first ssh to to your ec2 machine or local machine as done above
+
+
+Start Kafka-server:
+----------------------------------------
+Duplicate the session & enter in a new console --
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"      (if you work on ec2 then do this otherwise on local machine no need)
+
+cd kafka_2.13-3.5.0/  
+
+bin/kafka-server-start.sh config/server.properties
+
+It is pointing to private server , change server.properties so that it can run in public IP 
+
+Note: The above issue come when you work on ec2 so solve by below method:
+cd kafka_2.13-3.5.0/ 
+
+Do a "sudo nano config/server.properties" - change ADVERTISED_LISTENERS to public ip of the EC2 instance 
+
+Note: But if you work on your own machine the above issue not come
+
+Create the topic:
+-----------------------------
+Duplicate the session & enter in a new console --
+cd kafka_2.13-3.5.0/  
+
+bin/kafka-topics.sh --create --topic demo_testing2 --bootstrap-server {localhost or Put the Public IP of your EC2 Instance:9092} --replication-factor 1 --partitions 1
+
+(localhost for your machine and public IP when you used ec2)
+
+Start Producer:
+--------------------------
+bin/kafka-console-producer.sh --topic demo_testing2 --bootstrap-server {localhost or Put the Public IP of your EC2 Instance:9092} 
+(localhost for your machine and public IP when you used ec2)
+
+Start Consumer:
+-------------------------
+Duplicate the session & enter in a new console --
+
+cd kafka_2.13-3.5.0/  
+
+bin/kafka-console-consumer.sh --topic demo_testing2 --bootstrap-server {localhost or Put the Public IP of your EC2 Instance:9092}
+(localhost for your machine and public IP when you used ec2)

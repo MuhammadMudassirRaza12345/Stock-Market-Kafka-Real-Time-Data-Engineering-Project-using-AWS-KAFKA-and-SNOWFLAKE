@@ -1,0 +1,8 @@
+[2023-07-24 09:04:00,352] INFO [BrokerToControllerChannelManager id=0 name=forwarding] Node 0 disconnected. (org.apache.kafka.clients.NetworkClient)
+[2023-07-24 09:18:46,469] INFO Creating topic demo_test with configuration {} and initial partition assignment HashMap(0 -> ArrayBuffer(0)) (kafka.zk.AdminZkClient)
+[2023-07-24 09:18:46,490] INFO [Controller id=0, targetBrokerId=0] Node 0 disconnected. (org.apache.kafka.clients.NetworkClient)
+[2023-07-24 09:18:46,493] INFO [ReplicaFetcherManager on broker 0] Removed fetcher for partitions Set(demo_test-0) (kafka.server.ReplicaFetcherManager)
+[2023-07-24 09:18:46,496] INFO [LogLoader partition=demo_test-0, dir=/tmp/kafka-logs] Loading producer state till offset 0 with message format version 2 (kafka.log.UnifiedLog$)
+[2023-07-24 09:18:46,497] INFO Created log for partition demo_test-0 in /tmp/kafka-logs/demo_test-0 with properties {} (kafka.log.LogManager)
+[2023-07-24 09:18:46,497] INFO [Partition demo_test-0 broker=0] No checkpointed highwatermark is found for partition demo_test-0 (kafka.cluster.Partition)
+[2023-07-24 09:18:46,497] INFO [Partition demo_test-0 broker=0] Log loaded for partition demo_test-0 with initial high watermark 0 (kafka.cluster.Partition)
